@@ -8,9 +8,7 @@
     },
     "extends": [
         "react-app",
-        "react-app/jest",
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
         "plugin:security/recommended",
         "plugin:jest/recommended"
     ],
@@ -27,16 +25,12 @@
         "ecmaVersion": 2018
     },
     "plugins": [
-        "@typescript-eslint",
         "security",
         "json",
         "jest"
     ],
     "ignorePatterns": ["./.commitlintrc.json", "pg-main"],
     "rules": {
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/ban-ts-ignore": "off",
         "security/detect-object-injection": "off",
         "indent": [
             "error",
