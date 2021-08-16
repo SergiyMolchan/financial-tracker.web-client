@@ -1,3 +1,4 @@
+import * as config from './config';
 import './App.css';
 import {
 	BrowserRouter as Router,
@@ -7,7 +8,9 @@ import {
 import Authentication from './pages/authentication/Authentication';
 import Registration from './pages/registration/Registration';
 
+
 function App() {
+	console.log(config.api);
 	const publicRoutes = [
 		{
 			path: '/authentication',

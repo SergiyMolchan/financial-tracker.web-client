@@ -18,9 +18,9 @@
     "validator": "^13.6.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "dev:start": "react-app-env --env-file=./configs/local.env start",
+    "dev:build": "react-app-env --env-file=./configs/local.env build",
+    "test": "react-app-env --env-file=./configs/local.env test",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "css-loader": "^5.2.5",
+    "react-app-env": "^1.2.3",
     "style-loader": "^2.0.0"
   }
 }

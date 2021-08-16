@@ -117,7 +117,7 @@ dist
 
 # misc
 .DS_Store
-.env.local
+configs/local.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -141,7 +141,7 @@ yarn-error.log*
 
 # misc
 .DS_Store
-.env.local
+configs/local.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -164,7 +164,7 @@ yarn-error.log*
 
 # misc
 .DS_Store
-.env.local
+configs/local.env
 .env.development.local
 .env.test.local
 .env.production.local
