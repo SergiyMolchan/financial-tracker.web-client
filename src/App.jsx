@@ -1,3 +1,4 @@
+import React from 'react';
 import * as config from './config';
 import './App.css';
 import {
@@ -5,8 +6,8 @@ import {
 	Switch,
 	Route,
 } from 'react-router-dom';
-import Authentication from './pages/authentication/Authentication';
-import Registration from './pages/registration/Registration';
+import Authentication from './authentication/Authentication';
+import Registration from './registration/Registration';
 
 
 function App() {
@@ -22,7 +23,9 @@ function App() {
 		},
 		{
 			path: '*',
-			component: () => (<h1>404</h1>)
+			component: function NotFound() {
+				return <h1>404</h1>;
+			}
 		},
 	];
 	// const publicRoutes = [];
@@ -33,9 +36,7 @@ function App() {
 				<Switch>
 					{
 						publicRoutes.map((route, index) => (
-							<Route key={index} path={route.path}>
-								{route.component}
-							</Route>
+							<Route key={index} {...route} />
 						))
 					}
 				</Switch>
@@ -43,5 +44,13 @@ function App() {
 		</Router>
 	);
 }
+
+/*
+ this syntax is incorrect and results in an error with react hooks
+ 	<Route key={index} path={route.path}>
+		{route.component}
+	</Route>
+*/
+
 
 export default App;

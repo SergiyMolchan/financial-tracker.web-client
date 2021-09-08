@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authenticationReducer from './pages/authentication/authenticationSlice';
+import registrationReducer from './registration/registrationSlice';
 
-export const store = configureStore({
+const store = configureStore({
 	reducer: {
-		authentication: authenticationReducer,
+		registration: registrationReducer
 	},
 });
+
+export default store;
