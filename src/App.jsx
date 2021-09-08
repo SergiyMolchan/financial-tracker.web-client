@@ -7,7 +7,7 @@ import {
 	Route,
 } from 'react-router-dom';
 import Authentication from './authentication/Authentication';
-import Registration from './registration/Registration';
+import { Registration } from './registration';
 
 
 function App() {

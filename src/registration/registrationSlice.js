@@ -12,6 +12,7 @@ export const registration = createAsyncThunk(
 	'registration',
 	async (data, { rejectWithValue }) => {
 		try {
+			console.log('data', data);
 			const response = await registrationAPI(data);
 			return response.data;
 		} catch (error) {
@@ -25,13 +26,13 @@ export const registrationSlice = createSlice({
 	name: 'registration',
 	initialState,
 	extraReducers: (builder) => {
-		builder.addCase(registration.pending,  async (state) => {
+		builder.addCase(registration.pending,  (state) => {
 			state.loading = true;
 		});
-		builder.addCase(registration.fulfilled,  async (state) => {
+		builder.addCase(registration.fulfilled,  (state) => {
 			state.loading = false;
 		});
-		builder.addCase(registration.rejected,  async (state, action) => {
+		builder.addCase(registration.rejected,  (state, action) => {
 			state.loading = false;
 			state.error = { ...state.error, ...action.payload };
 		});
