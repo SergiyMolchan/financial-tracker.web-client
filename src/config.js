@@ -5,7 +5,7 @@ const api = {
 		url: 'user/registration',
 	}
 };
-
+console.log('process.env', process.env);
 const app = {
 	mode: process.env.REACT_APP_MODE || 'production'
 };

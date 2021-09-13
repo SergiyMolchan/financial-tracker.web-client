@@ -1,5 +1,4 @@
 import React from 'react';
-import * as config from './config';
 import './App.css';
 import {
 	BrowserRouter as Router,
@@ -11,7 +10,6 @@ import { Registration } from './registration';
 
 
 function App() {
-	console.log(config.api);
 	const publicRoutes = [
 		{
 			path: '/authentication',

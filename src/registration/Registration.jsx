@@ -6,15 +6,17 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link, TextField } from '@material-ui/core';
+import { LinearProgress, Link, TextField } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { registration } from './registrationSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { registration, selectLoading, selectError } from './registrationSlice';
 
 function Registration() {
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const isLoading = useSelector(selectLoading);
+	const error = useSelector(selectError);
 
 	const registrationSchema = Yup.object().shape({
 		login: Yup.string()
@@ -39,10 +41,10 @@ function Registration() {
 		},
 		validationSchema: registrationSchema,
 		onSubmit: values => {
-			console.log(JSON.stringify(values));
 			dispatch(registration(values));
 		},
 	});
+
 
 	return (
 		<section className={classes.wrapperVerticalCentred}>
@@ -57,8 +59,8 @@ function Registration() {
 						</Typography>
 					</CardContent>
 				</CardActionArea>
+				{ isLoading ? <LinearProgress/> : null }
 				<form onSubmit={formik.handleSubmit} className={classes.inputColumn} noValidate>
-
 					<TextField
 						className={classes.input}
 						required
@@ -96,6 +98,15 @@ function Registration() {
 						error={!!(formik.touched.confirmPassword && formik.errors.confirmPassword)}
 						helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
 					/>
+
+					{
+						error.message ?
+							<Typography variant="caption" color='error' align='center' display="block" gutterBottom>
+								{error.message}
+							</Typography>
+							:
+							null
+					}
 
 					<CardActions>
 						<Button size="small" color="primary" type="submit">

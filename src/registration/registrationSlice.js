@@ -5,19 +5,16 @@ const initialState = {
 	error: {
 		message: ''
 	},
-	loading: false
+	isLoading: false
 };
 
 export const registration = createAsyncThunk(
 	'registration',
 	async (data, { rejectWithValue }) => {
 		try {
-			console.log('data', data);
-			const response = await registrationAPI(data);
-			return response.data;
+			return await registrationAPI(data);
 		} catch (error) {
-			console.error(error);
-			return rejectWithValue(error.response.data);
+			return rejectWithValue(error);
 		}
 	}
 );
@@ -27,13 +24,14 @@ export const registrationSlice = createSlice({
 	initialState,
 	extraReducers: (builder) => {
 		builder.addCase(registration.pending,  (state) => {
-			state.loading = true;
+			state.isLoading = true;
 		});
 		builder.addCase(registration.fulfilled,  (state) => {
-			state.loading = false;
+			state.isLoading = false;
+			state.error = initialState.error;
 		});
 		builder.addCase(registration.rejected,  (state, action) => {
-			state.loading = false;
+			state.isLoading = false;
 			state.error = { ...state.error, ...action.payload };
 		});
 	},
@@ -41,6 +39,6 @@ export const registrationSlice = createSlice({
 });
 
 export const selectError = state => state.registration.error;
-export const selectLoading = state => state.registration.loading;
+export const selectLoading = state => state.registration.isLoading;
 
 export default registrationSlice.reducer;
